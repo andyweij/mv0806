@@ -5,14 +5,71 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="InsertCoffeeServlet" method="post">
-            咖啡名稱:<input type="text" name="coffee" value="Extra Espresso"/><br/>
-            售價:<input type="text" name="sale" value="200"/><br/>
-            總量:<input type="text" name="total" value="10"/><br/>
-            供應商:<input type="text" name="supplier" value="150"/><br/>
-            價格:<input type="text" name="price" value="300"/><br/>
+<form action="InsertCoffeeServlet" method="post" onsubmit="return test();">
+            咖啡名稱:<input type="text" id="coffee"  value="Extra Espresso"/><br/>
+            售價:<input type="text" id="sale"   value="200"/><br/>
+            總量:<input type="text" id="total"  value="10"/><br/>
+            供應商:<input type="text" id="supplier" value="150"/><br/>
+            價格:<input type="text" id="price" value="300"/><br/>
             <input type="submit" value="Send"/>
+            <input tupe="button" value="create json" onclick="create()"/>
+            <input tupe="button" value="showjson" onclick="formjson()"/>
+            <input tupe="button" value="addArrayjson" onclick="addArrayjson()"/>
+            <input tupe="button" value="showArray" onclick="showarray()"/>
         </form>
+        <script type="text/javascript">
+        var coffees=[];
+        function test(){
+        	return false;
+        }
+        function create(){
+        	var obj = new Object();
+        	obj.no=1;
+        	obj.userName="Mary";
+        	var str=JSON.stringify(obj);
+        	alert(str);
+        }
+        function formjson(){
+        	var coffee=document.getElementById("coffee").value;
+        	var sale=document.getElementById("sale").value;
+        	var total=document.getElementById("total").value;
+        	var supplier=document.getElementById("supplier").value;
+        	var price=document.getElementById("price").value;
+        	var obj={};
+        	obj.coffee=coffee;
+        	obj.sale=sale;
+        	obj.total=total;
+        	obj.supplier=supplier;
+        	obj.price=price;
+        	var str=JSON.stringify(obj);
+        	alert(str);
+        }
+        function addArrayjson(){
+        	var coffee=document.getElementById("coffee").value;
+        	var sale=document.getElementById("sale").value;
+        	var total=document.getElementById("total").value;
+        	var supplier=document.getElementById("supplier").value;
+        	var price=document.getElementById("price").value;
+        	var obj={};
+        	obj.coffee=coffee;
+        	obj.sale=sale;
+        	obj.total=total;
+        	obj.supplier=supplier;
+        	obj.price=price;
+        	coffees.push(obj);
+        	
+        	alert("object save to Array");
+        }
+        function showarray(){
+        	if(coffees.length>0){
+        		var str=JSON.stringify(coffees);
+        		alert(str);
+        	}else{
+        		alert("no Data");
+        	}
+        }
+        
+        </script>
 
 </body>
 </html>
